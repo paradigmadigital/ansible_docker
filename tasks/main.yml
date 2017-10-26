@@ -1,0 +1,13 @@
+---
+# tasks file for Docker
+
+- name: Check if docker is installed
+  command: docker -v
+  register: docker_version
+  become: yes
+  changed_when: False
+  ignore_errors: yes
+
+- name: Proceed to install after check fail
+  import_tasks: 01_install_docker.yml
+  when: "docker_version.rc != 0"

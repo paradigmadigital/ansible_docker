@@ -1,0 +1,24 @@
+---
+# tasks file for Docker
+
+- name: Download Docker install script
+  get_url:
+    url: https://get.docker.com
+    dest: /tmp/get-docker.sh
+    mode: 0777
+
+- name: Execute install script
+  command: /tmp/get-docker.sh
+  become: yes
+
+- name: Restart Docker service
+  become: yes
+  systemd:
+    name: docker
+    state: restarted
+
+- name: Enable Docker service
+  become: yes
+  systemd:
+    name: docker
+    enabled: yes
