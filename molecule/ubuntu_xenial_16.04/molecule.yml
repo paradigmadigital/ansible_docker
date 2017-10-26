@@ -15,7 +15,7 @@ provisioner:
   lint:
     name: ansible-lint
 scenario:
-  name: default
+  name: ubuntu_xenial_16.04
   test_sequence:
     - destroy
     - dependency
